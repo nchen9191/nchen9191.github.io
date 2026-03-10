@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nelson Chen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:           #faf9f7;
+      --bg2:          #f2ede6;
+      --text:         #1a1a1a;
+      --muted:        #666;
+      --accent:       #1a4a7a;
+      --accent-light: #2e6da4;
+      --accent-soft:  #e8f0f8;
+      --border:       #ddd8d0;
+      --paper:        #fff;
+      --red:          #c8450a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 52px 32px 80px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 172px;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 52px;
+    }
+
+    .header h1 {
+      font-family: 'Lora', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+
+    .header .subtitle {
+      font-size: 0.97rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .affil {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .affil strong { color: var(--accent); }
+
+    .bio {
+      font-size: 0.96rem;
+      color: #333;
+      max-width: 560px;
+      line-height: 1.78;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.87rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      background: var(--paper);
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .links a:hover {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    .photo-placeholder {
+      width: 172px;
+      height: 172px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #c8d8ea 0%, #8aaec8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lora', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -2px;
+      box-shadow: 0 2px 20px rgba(26,74,122,0.13);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 54px; }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.42rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 20px;
+      padding-bottom: 9px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    /* ── NEWS ── */
+    .news-list { display: flex; flex-direction: column; }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.94rem;
+    }
+    .news-item:last-child { border-bottom: none; }
+
+    .news-date {
+      color: var(--muted);
+      font-size: 0.86rem;
+      padding-top: 3px;
+      font-weight: 300;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .pub {
+      display: grid;
+      grid-template-columns: 152px 1fr;
+      gap: 20px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: box-shadow 0.18s;
+    }
+    .pub:hover { box-shadow: 0 4px 22px rgba(26,74,122,0.09); }
+
+    .pub-thumb {
+      width: 152px;
+      aspect-ratio: 16 / 10;
+      border-radius: 5px;
+      overflow: hidden;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pub-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-icon { font-size: 2.4rem; }
+
+    .pub-title {
+      font-family: 'Lora', serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.42;
+      margin-bottom: 5px;
+    }
+    .pub-title a { color: var(--text); }
+    .pub-title a:hover { color: var(--accent-light); }
+
+    .pub-authors {
+      font-size: 0.89rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    .pub-authors strong { color: var(--text); font-weight: 600; }
+
+    .pub-venue {
+      font-size: 0.89rem;
+      margin-bottom: 11px;
+    }
+    .venue-name { font-style: italic; color: var(--red); font-weight: 500; }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.73rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+    .badge-oral   { background: #fdeee7; color: var(--red);    border: 1px solid #f5c4a9; }
+    .badge-review { background: #edf3fb; color: var(--accent); border: 1px solid #b6cee7; }
+
+    .pub-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pub-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      background: var(--accent-soft);
+      border: 1px solid #c4d9ef;
+      padding: 3px 10px;
+      border-radius: 4px;
+      transition: background 0.14s, color 0.14s;
+    }
+    .pub-links a:hover {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 22px; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .exp-role { font-weight: 600; font-size: 0.97rem; }
+    .exp-org  { font-weight: 400; color: var(--muted); }
+    .exp-date { font-size: 0.87rem; color: var(--muted); font-weight: 300; white-space: nowrap; }
+    .exp-desc { font-size: 0.9rem; color: #444; margin-top: 5px; line-height: 1.65; }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 16px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 14px 18px;
+    }
+    .edu-degree { font-weight: 600; font-size: 0.96rem; }
+    .edu-school { font-size: 0.9rem; color: var(--accent); margin-top: 1px; }
+    .edu-date   { font-size: 0.87rem; color: var(--muted); font-weight: 300; white-space: nowrap; padding-top: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 620px) {
+      .header          { grid-template-columns: 1fr; }
+      .photo-placeholder { display: none; }
+      .pub             { grid-template-columns: 1fr; }
+      .pub-thumb       { width: 100%; max-width: 260px; }
+      .edu-item        { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div>
+      <h1>Nelson Chen</h1>
+      <p class="subtitle">Ph.D. Candidate · Computer Science (AI &amp; Robotics)</p>
+      <p class="affil">
+        <strong>Rutgers University</strong>, PRACSYS Robotics Lab<br>
+        Co-advised by Prof. Kostas Bekris &amp; Prof. Mridul Aanjaneya
+      </p>
+      <p class="bio">
+        I'm a Ph.D. student in AI &amp; Robotics at Rutgers University. My research focuses on
+        <strong>differentiable simulation</strong> and <strong>learning-based control</strong> for
+        tensegrity robots — compliant, cable-driven structures with rich contact dynamics. I build
+        graph neural network methods for learning robot dynamics and integrate them with model
+        predictive controllers for real-world navigation. Previously, I worked as a Senior Data
+        Scientist building NLP and document-understanding systems, and completed my M.S. in
+        Computational Fluid Dynamics at UC Berkeley.
+      </p>
+      <div class="links">
+        <a href="mailto:nchen9191@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="pdfs/Nelson_Chen_Research_CV_03-10-26.pdf" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          CV
+        </a>
+        <a href="https://www.linkedin.com/in/nchen9191/" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/nchen9191" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://scholar.google.com/citations?user=bRWJaXQAAAAJ&hl=en" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Google Scholar
+        </a>
+      </div>
+    </div>
+    <img src="images/portrait.jpeg" alt="Nelson Chen" style="width:172px;height:172px;object-fit:cover;border-radius:8px;box-shadow:0 2px 20px rgba(26,74,122,0.13);" />
+  </div>
+
+  <!-- ── NEWS ── -->
+  <div class="section">
+    <h2 class="section-title">News</h2>
+    <div class="news-list">
+      <div class="news-item">
+        <span class="news-date">Feb 2026</span>
+        <span><strong>CableRobotGraphSim</strong> accepted as an <strong>Oral</strong> at L4DC 2026 — preprint on <a href="https://arxiv.org/abs/2602.21331" target="_blank">arXiv</a>.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2026</span>
+        <span>New paper on <strong>MPC of Tensegrity Robots via Contact-Aware GNN Dynamics</strong> submitted to IROS 2026.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2026</span>
+        <span>Tensegrity navigation paper accepted at <strong>IEEE Robotics and Automation Letters</strong>.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Sep 2025</span>
+        <span>Completed research internship at <strong>Dyna Robotics</strong>, working on VLA models and offline RL for robotic manipulation.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">CoRL 2024</span>
+        <span>Paper on <strong>differentiable tensegrity dynamics with GNNs</strong> published at CoRL 2024 — <a href="https://arxiv.org/abs/2410.12216" target="_blank">arXiv:2410.12216</a>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PUBLICATIONS ── -->
+  <div class="section">
+    <h2 class="section-title">Selected Publications</h2>
+    <div class="pub-list">
+
+      <!-- IROS 2026 -->
+      <div class="pub">
+        <div class="pub-thumb">
+          <img src="https://nchen9191.github.io/static/images/IROS_website_tasks.png"
+               alt="Five MuJoCo navigation tasks"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="thumb-icon" style="display:none">🤖</span>
+        </div>
+        <div>
+          <div class="pub-title">
+            <a href="https://nchen9191.github.io/tensegrity_mppi/" target="_blank">
+              Model Predictive Control of Tensegrity Robots via Contact-Aware Graph Neural Dynamics Model
+            </a>
+          </div>
+          <div class="pub-authors">
+            <strong>N. Chen</strong>, P. Meng, C. Tang, A. Degay, Z. Brei, R. Kramer-Bottiglio, K. Bekris, &amp; M. Aanjaneya
+          </div>
+          <div class="pub-venue">
+            <span class="venue-name">IROS 2026</span>
+            <span class="badge badge-review">Under Review</span>
+          </div>
+          <div class="pub-links">
+            <a href="https://nchen9191.github.io/tensegrity_mppi/" target="_blank">Project Page</a>
+            <a href="https://www.youtube.com/watch?v=kPQF8x-ZkWI" target="_blank">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- L4DC 2026 Oral -->
+      <div class="pub">
+        <div class="pub-thumb">
+          <img src="https://nchen9191.github.io/static/images/L4DC_pipeline.png"
+               alt="CableRobotGraphSim pipeline"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="thumb-icon" style="display:none">🕸️</span>
+        </div>
+        <div>
+          <div class="pub-title">
+            <a href="https://nchen9191.github.io/cablerobotgraphsim/" target="_blank">
+              CableRobotGraphSim: A Graph Neural Network for Modeling Partially Observable Cable-Driven Robot Dynamics
+            </a>
+          </div>
+          <div class="pub-authors">
+            <strong>N. Chen</strong>, W. R. Johnson, R. Kramer-Bottiglio, K. Bekris, &amp; M. Aanjaneya
+          </div>
+          <div class="pub-venue">
+            <span class="venue-name">L4DC 2026</span>
+            <span class="badge badge-oral">Oral</span>
+          </div>
+          <div class="pub-links">
+            <a href="https://nchen9191.github.io/cablerobotgraphsim/" target="_blank">Project Page</a>
+            <a href="https://arxiv.org/abs/2602.21331" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/pdf/2602.21331" target="_blank">PDF</a>
+            <a href="https://github.com/nchen9191/cable-robot-graph-sim" target="_blank">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RA-L 2026 -->
+      <div class="pub">
+        <div class="pub-thumb">
+          <span class="thumb-icon">🔗</span>
+        </div>
+        <div>
+          <div class="pub-title">
+            Demonstrating an Open-source, Reproducible System for Tensegrity Navigation among Obstacles
+          </div>
+          <div class="pub-authors">
+            W. R. Johnson*, P. Meng*, <strong>N. Chen</strong>, M. Aanjaneya, R. Kramer-Bottiglio, &amp; K. Bekris
+          </div>
+          <div class="pub-venue">
+            <span class="venue-name">IEEE RA-L 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CoRL 2024 -->
+      <div class="pub">
+        <div class="pub-thumb">
+          <img src="https://nchen9191.github.io/static/images/corl_pipeline.png"
+               alt="CoRL 2024 tensegrity GNN pipeline"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="thumb-icon" style="display:none">🧠</span>
+        </div>
+        <div>
+          <div class="pub-title">
+            <a href="https://nchen9191.github.io/diff_tensegrity_gnn/" target="_blank">
+              Learning Differentiable Tensegrity Dynamics with Graph Neural Networks
+            </a>
+          </div>
+          <div class="pub-authors">
+            <strong>N. Chen</strong>, K. Wang, W. R. Johnson, R. Kramer-Bottiglio, K. Bekris, &amp; M. Aanjaneya
+          </div>
+          <div class="pub-venue">
+            <span class="venue-name">CoRL 2024</span>
+          </div>
+          <div class="pub-links">
+            <a href="https://nchen9191.github.io/diff_tensegrity_gnn/" target="_blank">Project Page</a>
+            <a href="https://arxiv.org/abs/2410.12216" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/pdf/2410.12216" target="_blank">PDF</a>
+            <a href="https://github.com/nchen9191/tensegrity_gnn_simulator_public" target="_blank">Code</a>
+            <a href="https://www.youtube.com/watch?v=dPeWT_WaEBA" target="_blank">Video</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── EXPERIENCE ── -->
+  <div class="section">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+
+      <div>
+        <div class="exp-header">
+          <div class="exp-role">Research Intern &mdash; <span class="exp-org">Dyna Robotics</span></div>
+          <div class="exp-date">May – Sep 2025</div>
+        </div>
+        <div class="exp-desc">
+          Built simulation infrastructure and training pipelines for Vision-Language-Action (VLA) benchmark models on LIBERO and Robomimic datasets using the internal DYNA-1 architecture. Developed dense learning-based reward functions and Q-functions for offline RL applied to towel-flattening manipulation.
+        </div>
+      </div>
+
+      <div>
+        <div class="exp-header">
+          <div class="exp-role">Senior Data Scientist &mdash; <span class="exp-org">Argo Group International Holdings</span></div>
+          <div class="exp-date">Mar 2020 – Sep 2022</div>
+        </div>
+        <div class="exp-desc">
+          Built Named-Entity-Recognition ensemble pipelines using Faster-RCNN, BERT, and LayoutLM to extract structured data chunks from insurance documents.
+        </div>
+      </div>
+
+      <div>
+        <div class="exp-header">
+          <div class="exp-role">Senior Data Scientist &mdash; <span class="exp-org">WorkFusion</span></div>
+          <div class="exp-date">Mar 2017 – Mar 2020</div>
+        </div>
+        <div class="exp-desc">
+          Led R&amp;D to expand WorkFusion's AutoML framework; trained NLP-based data extraction models and a handwritten signature detector using object detection methods.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── EDUCATION ── -->
+  <div class="section">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-list">
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Ph.D. in Computer Science (AI &amp; Robotics)</div>
+          <div class="edu-school">Rutgers University, New Brunswick</div>
+        </div>
+        <div class="edu-date">2022 – 2027 (expected)</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">M.S. in Mechanical Engineering (Computational Fluid Dynamics)</div>
+          <div class="edu-school">University of California, Berkeley</div>
+        </div>
+        <div class="edu-date">2014 – 2016</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">B.S. in Mechanical Engineering</div>
+          <div class="edu-school">Northwestern University, Evanston</div>
+        </div>
+        <div class="edu-date">2010 – 2014</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>
+      Nelson Chen &nbsp;·&nbsp; Brooklyn, NY &nbsp;·&nbsp;
+      <a href="mailto:nchen9191@gmail.com">nchen9191@gmail.com</a>
+      &nbsp;·&nbsp;
+      Design inspired by <a href="https://jonbarron.info" target="_blank">Jon Barron</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
